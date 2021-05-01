@@ -3,6 +3,8 @@
 IOSXE parsers for the following show commands:
     * ping {addr}
     * ping {addr} source {source} repeat {count}
+    * ping {addr} vrf {vrf} count {count} size {size}
+    * ping {addr} count {count} size {size}
 """
 # Python
 import re
@@ -16,6 +18,8 @@ class PingSchema(MetaParser):
     """ Schema for
             * ping {addr}
             * ping {addr} source {source} repeat {count}
+            * ping {addr} vrf {vrf} count {count} size {size}
+            * ping {addr} count {count} size {size}
     """
 
     schema = {
@@ -44,11 +48,15 @@ class Ping(PingSchema):
     """ parser for
         * ping {addr}
         * ping {addr} source {source} repeat {count}
+        * ping {addr} vrf {vrf} count {count} size {size}
+        * ping {addr} count {count} size {size}
     """
 
     cli_command = [
         'ping {addr}',
         'ping {addr} source {source} repeat {count}',
+        'ping {addr} vrf {vrf} count {count} size {size}',
+        'ping {addr} count {count} size {size}',
     ]
 
     def cli(self,
